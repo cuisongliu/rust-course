@@ -6,7 +6,7 @@
 
 在方法一章中，我们讲到了[关联函数](https://course.rs/basic/method#关联函数)，但是实际上关联类型和关联函数并没有任何交集，虽然它们的名字有一半的交集。
 
-关联类型是在特征定义的语句块中，申明一个自定义类型，这样就可以在特征的方法签名中使用该类型：
+关联类型是在特征定义的语句块中，声明一个自定义类型，这样就可以在特征的方法签名中使用该类型：
 
 ```rust
 pub trait Iterator {
@@ -81,6 +81,13 @@ trait Container{
 
 fn difference<C: Container>(container: &C) {}
 ```
+关联类型还可以被其它特征进行约束，例如：
+```rust
+trait Container{
+    type A：Display;
+    type B;
+    fn contains(&self, a: &Self::A, b: &Self::B) -> bool;
+}
 
 ## 默认泛型类型参数
 
